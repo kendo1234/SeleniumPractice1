@@ -12,11 +12,11 @@ public class TestAllLinks {
     public static void main(String[] args) {
         String baseUrl = "http://newtours.demoaut.com/";
         WebDriver driver = new FirefoxDriver();
-        String underConsTitle = "Under Construction: Mercury Tours";
+        String underConsTitle = "Under Construction: Mercury Tours"; // Creates result string
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         driver.get(baseUrl);
-        List<WebElement> linkElements = driver.findElements(By.tagName("a"));
+        List<WebElement> linkElements = driver.findElements(By.tagName("a")); //Creates lists from <a> tags
         String[] linkTexts = new String[linkElements.size()];
         int i = 0;
 
@@ -26,14 +26,14 @@ public class TestAllLinks {
             i++;
         }
 
-        //test each link
+        //test each link by looping over them
         for (String t : linkTexts) {
             driver.findElement(By.linkText(t)).click();
             if (driver.getTitle().equals(underConsTitle)) {
                 System.out.println("\"" + t + "\""
                         + " is under construction.");
             } else {
-                System.out.println("\"" + t + "\""
+                System.out.println("\"" + t + "\"" //print results to console
                         + " is working.");
             }
             driver.navigate().back();
